@@ -52,6 +52,9 @@ public class EncodeAndDecode {
             i = len+j+1;
         }
         
+        if (true) {
+            
+        }
         
         return ans;
     }
