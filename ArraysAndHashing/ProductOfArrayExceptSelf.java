@@ -3,41 +3,77 @@ import java.util.Arrays;
 public class ProductOfArrayExceptSelf {
    public int[] productExceptSelf(int[] nums) {
 
-        int[] ans = new int[nums.length];
-     int[] prefix = new int[nums.length];
-     int[] postfix = new int[nums.length];
-     for(int i=0; i < nums.length; i++){
-        if(i==0){
-            prefix[i]=nums[i];
+        // int[] ans = new int[nums.length];
+    //  int[] prefix = new int[nums.length];
+    //  int[] postfix = new int[nums.length];
+    //  for(int i=0; i < nums.length; i++){
+    //     if(i==0){
+    //         prefix[i]=nums[i];
 
-        } 
-        else {
-            prefix[i] = nums[i]*prefix[i-1];
+    //     } 
+    //     else {
+    //         prefix[i] = nums[i]*prefix[i-1];
 
-        }
-     }   
-     for(int j=nums.length-1; j>=0; j--){
-        if(j == nums.length-1) {
-            postfix[j] = nums[j];
-        }
-        else {
-            postfix[j] = nums[j]*postfix[j+1];
-        }
-     }
-     System.out.println(Arrays.toString(prefix));
-     System.out.println(Arrays.toString(postfix));
-     for (int i =0; i< nums.length; i++) {
-        if(i ==0){
-            ans[i] = 1*postfix[i+1];
-        } else if (i == nums.length-1){
-            ans[i] = 1*prefix[i-1];
-            }
+    //     }
+    //  }   
+    //  for(int j=nums.length-1; j>=0; j--){
+    //     if(j == nums.length-1) {
+    //         postfix[j] = nums[j];
+    //     }
+    //     else {
+    //         postfix[j] = nums[j]*postfix[j+1];
+    //     }
+    //  }
+    //  System.out.println(Arrays.toString(prefix));
+    //  System.out.println(Arrays.toString(postfix));
+    //  for (int i =0; i< nums.length; i++) {
+    //     if(i ==0){
+    //         ans[i] = 1*postfix[i+1];
+    //     } else if (i == nums.length-1){
+    //         ans[i] = 1*prefix[i-1];
+    //         }
             
-            else {
-            ans[i] = prefix[i-1]*postfix[i+1];
-        }
-     }
-     return ans;
-    }
+    //         else {
+    //         ans[i] = prefix[i-1]*postfix[i+1];
+    //     }
+    //  }
 
+    // int prefix = 1;
+    // int i =0;
+    // while(i<nums.length-1){
+    //     if (i == 0) {ans[i] = 1;}
+    //     else {
+    //         ans[i] = prefix;
+    //         prefix = prefix*nums[i];
+    //         i++;
+    //     }
+    // }   
+    // int j = nums.length-1;
+    // prefix = 1;
+    // while (j > 0){
+    //     if (j == nums.length-1) {ans[j] = prefix*ans[j];}
+    //     else {
+    //         ans[j] = prefix;
+    //         prefix = prefix*nums[j];
+    //         j--; 
+    //     }
+    // }
+    //  return ans;
+    // }
+
+
+    //optimized approach
+        int[] ans = new int[nums.length];
+        ans[0] = 1;
+        for(int i =1; i< nums.length; i++){
+                ans[i] = ans[i-1]*nums[i-1];
+        }
+        int prefix = 1;
+            for(int j = nums.length-1; j>=0; j--){
+
+                ans[j] = ans[j]*prefix;
+                prefix = prefix*nums[j];
+            }
+        return ans;
+        }
 }
