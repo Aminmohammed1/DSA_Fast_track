@@ -5,7 +5,7 @@ class Solution:
             # print(tokens[i])
             if tokens[i] != "+" and tokens[i] != "-" and tokens[i] != "*" and tokens[i] != "/":
                 stack.append(tokens[i])
-                print(stack)
+                # print(stack)
             else :
                 # print(stack)
                 n1 = int(stack.pop())
@@ -15,10 +15,10 @@ class Solution:
                 if o == "+":
                     r = n1+n2
                 elif o == "-":
-                    r = n1-n2
+                    r = n2-n1
                 elif o == "*":
                     r = n1*n2 
                 else :
-                    r = n1//n2                                                           
+                    r = n2/n1                                                           
                 stack.append(r)
-        return stack.pop()        
+        return int(stack.pop())        
